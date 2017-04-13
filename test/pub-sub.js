@@ -1,8 +1,9 @@
 /**
  * 发布-订阅模式
- * @emit 发布事件
- * @sub 订阅事件
- * @cancle 取消事件
+ * 提供 3 个方法
+ * - @emit 发布事件
+ * - @sub 订阅事件
+ * - @cancle 取消事件
  *  
  */
 (function(name, definition) {
