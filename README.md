@@ -2,8 +2,8 @@
 
 各个设计模式源码及Deom示例。
 
-+ 发布-订阅模式
++ `pub-sub.js` 发布-订阅模式
 
-##License
+## License
 
 MIT
