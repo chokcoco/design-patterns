@@ -4,29 +4,12 @@ var header = require('gulp-header');
 var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
 var rename = require('gulp-rename');
-var less = require('gulp-less');
-var autoprefixer = require('gulp-autoprefixer');
-var minify = require('gulp-minify-css');
-var tap = require('gulp-tap');
 var browserSync = require('browser-sync');
 var pkg = require('./package.json');
 
 gulp.task('build', function () {
-    gulp.src('src/example/**/*')
-        .pipe(gulp.dest('test/example'));
-
-    gulp.src('src/*.less')
-        .pipe(less().on('error', function (e){
-            console.error(e.message);
-            this.emit('end');
-        }))
-        .pipe(autoprefixer())
-        .pipe(gulp.dest('output'))
-        .pipe(minify())
-        .pipe(rename(function (file){
-            file.basename += '.min';
-        }))
-        .pipe(gulp.dest('output'));
+    gulp.src('src/**')
+        .pipe(gulp.dest('test/'));
 
     gulp.src('src/*.js')
         .pipe(jshint())
@@ -51,12 +34,12 @@ gulp.task('server', function () {
             }
         },
         port: 8080,
-        startPath: '/test/example'
+        startPath: '/test/'
     });
 });
 
 gulp.task('watch', ['build', 'server'], function (){
-    gulp.watch('src/**/*', ['build']);
+    gulp.watch('src/**', ['build']);
 });
 
 gulp.task('default', ['watch']);

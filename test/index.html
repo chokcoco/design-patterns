@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>发布-订阅模式</title>
+</head>
+<style>
+
+</style>
+<body>
+<div class="container">
+
+</div>
+<script src="../output/pub-sub.js"></script>
+<script>
+    function consoleStr() {
+        console.log('Receive emit!');
+    }
+
+    // 发布--订阅模式
+    var pubSubMode = new pubSub();
+
+    // 订阅
+    pubSubMode.sub('console', consoleStr);
+
+    pubSubMode.sub('console', function(data) {
+        console.log('Receive ' + data.name);
+    });
+
+    // 发布
+    var data = {
+        name: 'Coco'
+    }
+
+    pubSubMode.emit('console', data);
+
+    // 取消事件
+    pubSubMode.cancle('console', consoleStr);
+
+    // 发布
+    var data = {
+        name: 'Coco'
+    }
+
+    pubSubMode.emit('console', data);
+</script>
+</body>
+</html>
